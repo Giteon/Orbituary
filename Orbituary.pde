@@ -88,7 +88,6 @@ public void setup()
   font = loadFont("CalifornianFB-Reg-48.vlw");
   textFont(font);
   
-  requestFocus();
 }
 void draw() {
 
