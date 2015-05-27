@@ -138,11 +138,11 @@ void draw() {
   fill(0);
   if (Math.random()>.35)
   {
-    text(points, 250, 21);
+    text(int(points), 250, 21);
     if (multiplier != 1)
     {
       fill(255, 209, 86);
-      text("X"+multiplier, 280 + ((points + "").length()*8), 21);
+      text("X"+multiplier, 280 + ((int(points) + "").length()*8), 21);
     }
     if (igniteCounter < 1)
     {
@@ -483,11 +483,11 @@ public class specialOrbiter extends Orbiter {
         radius += 8;
         if (multiplier == 1)
         {
-          points --;
+          int(points --); 
         } 
         else
         {
-          points -=multiplier;
+          int(points -=multiplier);
         }
         /**/
       } 
@@ -499,11 +499,11 @@ public class specialOrbiter extends Orbiter {
         radius -= 8;
         if (multiplier == 1)
         {
-          points ++;
+          int(points ++);
         } 
         else
         {
-          points +=multiplier;
+          int(points +=multiplier);
         }
         /**/
       }
@@ -583,7 +583,7 @@ public class specialOrbiter extends Orbiter {
 //          badSnap.play();
 //          badSnap.rewind();
           background(222, 65, 65);
-          points -= ((int)(dots.size()*1.2)*(multiplier/2));
+          int(points -= ((int)(dots.size()*1.2)*(multiplier/2)));
           animateBackToOuterRadius = true;
         }
         else
@@ -811,6 +811,5 @@ public class Igniter extends Collectable {
 }
 /*RadiusCompiler*/
 //something to change directions
-
 
 
