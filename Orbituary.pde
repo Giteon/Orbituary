@@ -1,4 +1,6 @@
 
+  requestFocus();
+
 /*declare variables*/
 ArrayList <Orbiter> dots = new ArrayList <Orbiter>();
 
@@ -34,7 +36,6 @@ PFont font;
 public void setup()
 {
   size(500, 500);
-  requestFocus();
   background(255);
 
   /*initialize variables*/
