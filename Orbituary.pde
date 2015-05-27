@@ -33,8 +33,7 @@ PFont font;
 public void setup()
 {
   size(500, 500);
-  frame.toFront();
-  frame.requestFocus();
+
   background(255);
 
   /*initialize variables*/
