@@ -33,6 +33,7 @@ PFont font;
 
 public void setup()
 {
+requestFocus();
   size(500, 500);
   background(255);
 
