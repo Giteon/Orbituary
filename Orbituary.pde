@@ -33,8 +33,8 @@ PFont font;
 
 public void setup()
 {
-requestFocus();
   size(500, 500);
+  requestFocus();
   background(255);
 
   /*initialize variables*/
