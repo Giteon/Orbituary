@@ -1,6 +1,3 @@
-
-  requestFocus();
-
 /*declare variables*/
 ArrayList <Orbiter> dots = new ArrayList <Orbiter>();
 
@@ -90,6 +87,8 @@ public void setup()
 
   font = loadFont("CalifornianFB-Reg-48.vlw");
   textFont(font);
+  
+  requestFocus();
 }
 void draw() {
 
