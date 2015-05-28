@@ -1,12 +1,5 @@
-//tally mark point system
-import ddf.minim.spi.*;
-import ddf.minim.signals.*;
+//implement some kind oftally mark point system?
 import ddf.minim.*;
-import ddf.minim.analysis.*;
-import ddf.minim.ugens.*;
-import ddf.minim.effects.*;
-
-
 /*declare variables*/
 ArrayList <Orbiter> dots = new ArrayList <Orbiter>();
 
