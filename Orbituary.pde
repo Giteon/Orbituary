@@ -1,3 +1,12 @@
+//tally mark point system
+import ddf.minim.spi.*;
+import ddf.minim.signals.*;
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.ugens.*;
+import ddf.minim.effects.*;
+
+
 /*declare variables*/
 ArrayList <Orbiter> dots = new ArrayList <Orbiter>();
 
@@ -24,8 +33,8 @@ boolean isSlowed;
 
 /*declare sounds*/
 //import ddf.minim.*;
-//Minim minim;
-//AudioPlayer soundtrack1, soundtrack2, goodDing, badSnap, step, freezeCrack, moneySound, explosionSound, burnUpSound, timeWarp, demonGrowl;
+Minim minim;
+AudioPlayer soundtrack1, soundtrack2, goodDing, badSnap, step, freezeCrack, moneySound, explosionSound, burnUpSound, timeWarp, demonGrowl;
 /**/
 
 PFont font;
@@ -33,7 +42,6 @@ PFont font;
 public void setup()
 {
   size(500, 500);
-
   background(255);
 
   /*initialize variables*/
@@ -61,34 +69,33 @@ public void setup()
   /**/
 
   /*initialize sounds*/
-//  minim = new Minim(this);
+  minim = new Minim(this);
 
   /*background music*/
-//  soundtrack1 = minim.loadFile("soundtrack-1.mp3");
-//  soundtrack2 = minim.loadFile("soundtrack-2.mp3");
-//
-//
-//  /*trigger sounds*/
-//  goodDing = minim.loadFile("good-ding.mp3");
-//  badSnap = minim.loadFile("bad-snap.mp3");
-//  step = minim.loadFile("step.mp3");
-//
-//  /*collectables sounds*/
-//  freezeCrack = minim.loadFile("freeze-crack.mp3");
-//  moneySound = minim.loadFile("money-sound.mp3");
-//  explosionSound = minim.loadFile("explosion-sound.mp3");
-//  burnUpSound = minim.loadFile("burn-up-sound.mp3");
-  /**/
-  //  timeWarp = minim.loadFile("time-warp-1.mp3");
-  //  demonGrowl = minim.loadFile("demon-growl.mp3");
+  soundtrack1 = minim.loadFile("soundtrack-1.mp3");
+  soundtrack2 = minim.loadFile("soundtrack-2.mp3");
 
-//  soundtrack1.loop();
-//  soundtrack2.loop();
+
+  /*trigger sounds*/
+  goodDing = minim.loadFile("good-ding.mp3");
+  badSnap = minim.loadFile("bad-snap.mp3");
+  step = minim.loadFile("step.mp3");
+
+  /*collectables sounds*/
+  freezeCrack = minim.loadFile("freeze-crack.mp3");
+  moneySound = minim.loadFile("money-sound.mp3");
+  explosionSound = minim.loadFile("explosion-sound.mp3");
+  burnUpSound = minim.loadFile("burn-up-sound.mp3");
+  /**/
+//    timeWarp = minim.loadFile("time-warp-1.mp3");
+//    demonGrowl = minim.loadFile("demon-growl.mp3");
+
+  soundtrack1.loop();
+  soundtrack2.loop();
 
 
   font = loadFont("CalifornianFB-Reg-48.vlw");
   textFont(font);
-  
 }
 void draw() {
 
@@ -479,8 +486,8 @@ public class specialOrbiter extends Orbiter {
       if ( keyCode == UP && radius <= dots.get(dots.size()-1).getRadius())
       {
         /*move away from center*/
-//        step.play();
-//        step.rewind();
+        step.play();
+        step.rewind();
         radius += 8;
         if (multiplier == 1)
         {
@@ -495,8 +502,8 @@ public class specialOrbiter extends Orbiter {
       else if ( keyCode == DOWN && !animateBackToOuterRadius)
       {
         /*move towards center*/
-//        step.play();
-//        step.rewind();
+        step.play();
+        step.rewind();
         radius -= 8;
         if (multiplier == 1)
         {
@@ -526,8 +533,8 @@ public class specialOrbiter extends Orbiter {
   public void reachCenter() {
     if (radius<=5 && !animateBackToOuterRadius)
     {
-//      goodDing.play();
-//      goodDing.rewind();
+      goodDing.play();
+      goodDing.rewind();
       speed -= float(getRadius())/20;
       /*trigger actions*/
       tempSpeed =  (float)Math.random()*.4+.5-(dots.size()/10);
@@ -581,16 +588,16 @@ public class specialOrbiter extends Orbiter {
         /*trigger actions*/
         if (igniteCounter >= 1)
         {
-//          badSnap.play();
-//          badSnap.rewind();
+          badSnap.play();
+          badSnap.rewind();
           background(222, 65, 65);
           int(points -= ((int)(dots.size()*1.2)*(multiplier/2)));
           animateBackToOuterRadius = true;
         }
         else
         {
-//          burnUpSound.play();
-//          burnUpSound.rewind();
+          burnUpSound.play();
+          burnUpSound.rewind();
           dots.remove(i);
           igniteCounter ++;
           //lala
@@ -726,8 +733,8 @@ public class Freezer extends Collectable {
   }
 
   public void effect() { /*specialorbiter calls this in collide()*/
-//    freezeCrack.play();
-//    freezeCrack.rewind();
+    freezeCrack.play();
+    freezeCrack.rewind();
     freezeAll = true;
   }
   public void removeCollectable() {
@@ -765,8 +772,8 @@ public class PointMultiplier extends Collectable {
   }
 
   public void effect() { /*specialorbiter calls this in collide()*/
-//    moneySound.play();
-//    moneySound.rewind();
+    moneySound.play();
+    moneySound.rewind();
     multiplier *=2;
   }
   public void removeCollectable() {
@@ -802,8 +809,8 @@ public class Igniter extends Collectable {
   }
 
   public void effect() { /*specialorbiter calls this in collide()*/
-//    explosionSound.play();
-//    explosionSound.rewind();
+    explosionSound.play();
+    explosionSound.rewind();
     igniteCounter -= 1;
   }
   public void removeCollectable() {
@@ -812,5 +819,6 @@ public class Igniter extends Collectable {
 }
 /*RadiusCompiler*/
 //something to change directions
+
 
 
