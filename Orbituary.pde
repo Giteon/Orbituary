@@ -70,7 +70,7 @@ public void setup()
 
 
   /*trigger sounds*/
-  goodDing = minim.loadFile("good-ding.mp3");
+  goodDing = minim.loadFile("data//good-ding.mp3");
   badSnap = minim.loadFile("bad-snap.mp3");
   step = minim.loadFile("step.mp3");
 
