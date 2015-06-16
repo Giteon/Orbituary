@@ -1,6 +1,9 @@
-//implement some kind oftally mark point system?
+//implement some kind of tally mark point system?
+
 import ddf.minim.*;
-/*declare variables*/
+
+boolean menu;
+
 ArrayList <Orbiter> dots = new ArrayList <Orbiter>();
 
 /*collectables ArrayLists*/
@@ -25,9 +28,8 @@ int igniteCounter;
 boolean isSlowed;
 
 /*declare sounds*/
-//import ddf.minim.*;
 Minim minim;
-AudioPlayer soundtrack1, soundtrack2, goodDing, badSnap, step, freezeCrack, moneySound, explosionSound, burnUpSound, timeWarp, demonGrowl;
+AudioPlayer soundtrack1, soundtrack2, goodDing, badSnap, step, freezeCrack, moneySound, explosionSound, burnUpSound, startBell, demonGrowl;
 /**/
 
 PFont font;
@@ -35,8 +37,9 @@ PFont font;
 public void setup()
 {
   size(500, 500);
+  smooth();
   background(255);
-
+  menu = true;
   /*initialize variables*/
   canShift = true;
   points = 0;
@@ -58,7 +61,6 @@ public void setup()
   /*initialize objects*/
   gideon = new specialOrbiter(20, 180, 30);
   dots.add(new Orbiter(12, (float)(Math.random()*361), (float)(Math.random()*.5)));
-
   /**/
 
   /*initialize sounds*/
@@ -80,8 +82,8 @@ public void setup()
   explosionSound = minim.loadFile("data//explosion-sound.mp3");
   burnUpSound = minim.loadFile("data//burn-up-sound.mp3");
   /**/
-//    timeWarp = minim.loadFile("time-warp-1.mp3");
-//    demonGrowl = minim.loadFile("demon-growl.mp3");
+  startBell = minim.loadFile("data//start-bell.mp3");
+  //    demonGrowl = minim.loadFile("demon-growl.mp3");
 
   soundtrack1.loop();
   soundtrack2.loop();
@@ -93,67 +95,100 @@ public void setup()
 void draw() {
 
   /*display title*/
-  fill(0);
-  textSize(50);
-  textAlign(CENTER, CENTER);
-  if (Math.random()>.35)
+  if (menu)
   {
-    text("O  ", 50, 60+(int)(Math.random()*4-2));
+    fill(0);
+    textSize(50);
+    textAlign(CENTER, CENTER);
+    if (Math.random()>.35) {
+      text("O  ", 50, 60+(int)(Math.random()*4-2));  
+      text("b", 210, height/2+(int)(Math.random()*4-2));
+    }
+    if (Math.random()>.35) {
+      text("R  ", 110, 70+(int)(Math.random()*4-2)); 
+      text("e", 234, height/2+(int)(Math.random()*4-2));
+    }
+    if (Math.random()>.35) {
+      text("B  ", 160, 60+(int)(Math.random()*4-2)); 
+      text("g", 256, height/2+(int)(Math.random()*4-2));
+    }
+    if (Math.random()>.35) {
+      text("I  ", 211, 70+(int)(Math.random()*4-2)); 
+      text("i", 276, height/2+(int)(Math.random()*4-2));
+    }
+    if (Math.random()>.35) {
+      text("T  ", 264, 60+(int)(Math.random()*4-2)); 
+      text("n", 296, height/2+(int)(Math.random()*4-2));
+    }
+    if (Math.random()>.35) {
+      text("U  ", 317, 70+(int)(Math.random()*4-2));
+    }
+    if (Math.random()>.35) {
+      text("A  ", 370, 60+(int)(Math.random()*4-2));
+    }
+    if (Math.random()>.35) {
+      text("R  ", 423, 70+(int)(Math.random()*4-2));
+    }
+    if (Math.random()>.35) {
+      text("Y  ", 472, 60+(int)(Math.random()*4-2));
+    }
+
+    if (mouseX >=width/2-58 && mouseX <=(width/2-58)+118 && mouseY>=height/2-30 && mouseY <=(height/2-30)+62)
+    {
+      step.play();
+      strokeWeight(1);
+      stroke(50);
+      if (mousePressed)
+      {
+        menu = false;
+        startBell.play();
+      }
+    }
+    else
+    {
+      step.rewind();
+      strokeWeight(.5);
+      stroke(200);
+    }
+    noFill();
+    if (Math.random()>.85)
+    {
+      rect(width/2-58, height/2-30, 118, 62);
+    }
   }
-  if (Math.random()>.35)
-  {
-    text("R  ", 110, 70+(int)(Math.random()*4-2));
-  }
-  if (Math.random()>.35)
-  {
-    text("B  ", 160, 60+(int)(Math.random()*4-2));
-  }
-  if (Math.random()>.35)
-  {
-    text("I  ", 211, 70+(int)(Math.random()*4-2));
-  }
-  if (Math.random()>.35)
-  {
-    text("T  ", 264, 60+(int)(Math.random()*4-2));
-  }
-  if (Math.random()>.35)
-  {
-    text("U  ", 317, 70+(int)(Math.random()*4-2));
-  }
-  if (Math.random()>.35)
-  {
-    text("A  ", 370, 60+(int)(Math.random()*4-2));
-  }
-  if (Math.random()>.35)
-  {
-    text("R  ", 423, 70+(int)(Math.random()*4-2));
-  }
-  if (Math.random()>.35)
-  {
-    text("Y  ", 472, 60+(int)(Math.random()*4-2));
-  }
+
   /**/
 
+  /*ring showing the current radius
+   stroke(254,207,200);
+   noFill();
+   ellipse(width/2,height/2,gideon.getRadius()*2,gideon.getRadius()*2);
+   */
+
   /*display points*/
-  textSize(31);
-  fill(0);
-  if (Math.random()>.35)
+  if (!menu)
   {
-    text(int(points), 250, 21);
-    if (multiplier != 1)
+    textSize(31);
+    fill(0);
+    if (Math.random()>.35)
     {
-      fill(255, 209, 86);
-      text("X"+multiplier, 280 + ((int(points) + "").length()*8), 21);
-    }
-    if (igniteCounter < 1)
-    {
-      fill(234, 64, 17);
-      text(1-igniteCounter, 20, 20);
+      text(int(points), 250, 21);
+      if (multiplier != 1)
+      {
+        fill(255, 209, 86);
+        text("X"+multiplier, 280 + ((int(points) + "").length()*8), 21);
+      }
+      if (igniteCounter < 1)
+      {
+        fill(234, 64, 17);
+        text(1-igniteCounter, 20, 20);
+      }
     }
   }
   /**/
 
   /*background visual noise*/
+  strokeWeight(.5);
   stroke((int)(Math.random()*80+170));
   int tempGrainY = (int)(Math.random()*height);
   int tempGrainX = (int)(Math.random()*width);
@@ -166,22 +201,29 @@ void draw() {
   /**/
 
   /*displays dots between title letters*/
-  noStroke();
-  fill(0);
-  for ( int i = 70; i < 450; i +=52 )
+  if (menu)
   {
-    ellipse(i, 60, 10, 10);
+    noStroke();
+    fill(0);
+    for ( int i = 70; i < 450; i +=52 )
+    {
+      if (Math.random()>.35)
+      {
+        ellipse(i, 60, 10, 10);
+      }
+    }
   }
+
   /**/
 
   /*draws background with opacity*/
   if (isSlowed == false)
   {
-  if (Math.random()>.55)
-  {
-    fill((int)(Math.random()*25+230), 61);
-    rect(0, 0, width, height);
-  }
+    if (Math.random()>.55)
+    {
+      fill((int)(Math.random()*25+230), 61);
+      rect(0, 0, width, height);
+    }
   }
   else
   {
@@ -191,18 +233,21 @@ void draw() {
   /**/
 
   /*displays center ellipse*/
-  strokeWeight(.5);
-  stroke(50);
-  noFill();
-  if (Math.random()>.5)
+  if (!menu)
   {
+    strokeWeight(.5);
+    stroke(50);
+    noFill();
     if (Math.random()>.5)
     {
-      ellipse(width/2, height/2, 6, 6);
-    } 
-    else
-    {
-      ellipse(width/2, height/2, 8, 8);
+      if (Math.random()>.5)
+      {
+        ellipse(width/2, height/2, 6, 6);
+      } 
+      else
+      {
+        ellipse(width/2, height/2, 8, 8);
+      }
     }
   }
   /**/
@@ -211,49 +256,53 @@ void draw() {
   /**/
 
   /*dot operators for classes*/
-  for (int i = 0; i < dots.size (); i ++)
+  if (!menu)
   {
-    dots.get(i).orbit();
-    dots.get(i).show();
-    dots.get(i).getX();
-    dots.get(i).getY();
-    dots.get(i).getRadius();
-  }
-  /*collectable dot operators*/
-  for (int f = 0; f < freezers.size (); f ++)
-  {
-    freezers.get(f).orbit();
-    freezers.get(f).show();
-    freezers.get(f).getX();
-    freezers.get(f).getY();
-    freezers.get(f).getRadius();
-  }
-  for (int p = 0; p < pointMultipliers.size (); p ++)
-  {
-    pointMultipliers.get(p).orbit();
-    pointMultipliers.get(p).show();
-    pointMultipliers.get(p).getX();
-    pointMultipliers.get(p).getY();
-    pointMultipliers.get(p).getRadius();
-  }
-  for (int i = 0; i  < igniters.size (); i ++)
-  {
-    igniters.get(i).orbit();
-    igniters.get(i).show();
-    igniters.get(i).getX();
-    igniters.get(i).getY();
-    igniters.get(i).getRadius();
-  }
+    for (int i = 0; i < dots.size (); i ++)
+    {
+      dots.get(i).orbit();
+      dots.get(i).show();
+      dots.get(i).getX();
+      dots.get(i).getY();
+      dots.get(i).getRadius();
+    }
+    /*collectable dot operators*/
+    for (int f = 0; f < freezers.size (); f ++)
+    {
+      freezers.get(f).orbit();
+      freezers.get(f).show();
+      freezers.get(f).getX();
+      freezers.get(f).getY();
+      freezers.get(f).getRadius();
+    }
+    for (int p = 0; p < pointMultipliers.size (); p ++)
+    {
+      pointMultipliers.get(p).orbit();
+      pointMultipliers.get(p).show();
+      pointMultipliers.get(p).getX();
+      pointMultipliers.get(p).getY();
+      pointMultipliers.get(p).getRadius();
+    }
+    for (int i = 0; i  < igniters.size (); i ++)
+    {
+      igniters.get(i).orbit();
+      igniters.get(i).show();
+      igniters.get(i).getX();
+      igniters.get(i).getY();
+      igniters.get(i).getRadius();
+    }
 
-  /**/
-  gideon.orbit();
-  gideon.show();
-  gideon.getX();
-  gideon.getY();
-  gideon.getRadius();
-  gideon.keyReleased(); /*radius shift*/
-  gideon.reachCenter();
-  gideon.collide();
+    /**/
+    gideon.orbit();
+    gideon.show();
+    gideon.getX();
+    gideon.getY();
+    gideon.getRadius();
+    gideon.keyReleased(); /*radius shift*/
+//    gideon.mousePressed();
+    gideon.reachCenter();
+    gideon.collide();
+  }
 }
 /**/
 
@@ -325,14 +374,14 @@ public class Orbiter
   public void show()
   {
     /*display ellipse*/
-if(isSlowed == false)
-{
-    fill((int)x/1.2-60, (int)y/1.2-100, ((int)x+(int)y)/3-80);
-}
-else
-{
-  fill(255);
-}
+    if (isSlowed == false)
+    {
+      fill((int)x/1.2-60, (int)y/1.2-100, ((int)x+(int)y)/3-80);
+    }
+    else
+    {
+      fill(255);
+    }
     /*collectable influence on Orbiter color*/
     if (freezeAll)
     {
@@ -381,35 +430,35 @@ public class specialOrbiter extends Orbiter {
     /*speed based on radius*/
     if (radius < 37)
     {
-      if(isSlowed)
+      if (isSlowed)
       {
-      pos += speed/((float(getRadius()))/1.4)/2.8;
+        pos += speed/((float(getRadius()))/1.4)/2.8;
       }
       else
       {
-         pos += speed/((float(getRadius()))/1.4);
+        pos += speed/((float(getRadius()))/1.4);
       }
     } 
     else if (radius < 61)
     {
-       if(isSlowed)
+      if (isSlowed)
       {
-      pos += speed/((float(getRadius()))/2.8)/2.8;
+        pos += speed/((float(getRadius()))/2.8)/2.8;
       }
       else
       {
-      pos += speed/((float(getRadius()))/2.8);
+        pos += speed/((float(getRadius()))/2.8);
       }
     } 
     else
     {
-      if(isSlowed)
+      if (isSlowed)
       {
-      pos += speed/((float(getRadius()))/3.7)/2.8;
+        pos += speed/((float(getRadius()))/3.7)/2.8;
       }
       else
       {
-       pos += speed/((float(getRadius()))/3.7);
+        pos += speed/((float(getRadius()))/3.7);
       }
     }
     /**/
@@ -484,7 +533,7 @@ public class specialOrbiter extends Orbiter {
         radius += 8;
         if (multiplier == 1)
         {
-          int(points --); 
+          int(points --);
         } 
         else
         {
@@ -521,13 +570,37 @@ public class specialOrbiter extends Orbiter {
     /**/
   }
   /**/
-
+  public void mousePressed()
+  {
+    if (!menu && canShift && mousePressed && !animateBackToOuterRadius)
+    {
+      canShift = false;
+      /*move towards center*/
+      step.play();
+      step.rewind();
+      radius -= 8;
+      if (multiplier == 1)
+      {
+        int(points ++);
+      } 
+      else
+      {
+        int(points +=multiplier);
+      }
+      /**/
+    }
+    if (mousePressed == false)
+    { 
+      canShift = true;
+    }
+  }
   /*trigger actions when character reaches center*/
   public void reachCenter() {
     if (radius<=5 && !animateBackToOuterRadius)
     {
       goodDing.play();
       goodDing.rewind();
+      points += 10;
       speed -= float(getRadius())/20;
       /*trigger actions*/
       tempSpeed =  (float)Math.random()*.4+.5-(dots.size()/10);
@@ -547,15 +620,15 @@ public class specialOrbiter extends Orbiter {
       {
         dots.add(new Orbiter((int)dots.get(dots.size()-1).getRadius()/*new dot is at SAME radius*/, (float)(Math.random()*361), tempSpeed));
       }
-      if (Math.random() > (.75-(dots.size()/100))) /*chanmce of Freezer collectable showing up*/
+      if (Math.random() > (.8-(dots.size()/20))) /*chanmce of Freezer collectable showing up*/
       {
         freezers.add(new Freezer((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
       }
-      if (Math.random() > (.7-(dots.size()/100))) /*chanmce of PointMultiplier collectable showing up*/
+      if (Math.random() > (87.-(dots.size()/15))) /*chanmce of PointMultiplier collectable showing up*/
       {
         pointMultipliers.add(new PointMultiplier((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
       }
-      if (Math.random() > (.68-(dots.size()/100))) /*chanmce of Igniter collectable showing up*/
+      if (Math.random() > (.85-(dots.size()/30))) /*chanmce of Igniter collectable showing up*/
       {
         igniters.add(new Igniter((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
       }
@@ -812,6 +885,4 @@ public class Igniter extends Collectable {
 }
 /*RadiusCompiler*/
 //something to change directions
-
-
 
