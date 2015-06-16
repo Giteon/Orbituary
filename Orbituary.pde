@@ -298,8 +298,8 @@ void draw() {
     gideon.getX();
     gideon.getY();
     gideon.getRadius();
-//    gideon.keyReleased(); /*radius shift*/
-    gideon.mousePressed();
+    gideon.keyReleased(); /*radius shift*/
+//    gideon.mousePressed();
     gideon.reachCenter();
     gideon.collide();
   }
