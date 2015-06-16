@@ -555,7 +555,7 @@ public class specialOrbiter extends Orbiter {
       {
         pointMultipliers.add(new PointMultiplier((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
       }
-      if (Math.random() > (.68-(dots.size()/100))) /*chanmce of Igniter collectable showing up*/
+      if (Math.random() > (.58-(dots.size()/100))) /*chanmce of Igniter collectable showing up*/
       {
         igniters.add(new Igniter((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
       }
