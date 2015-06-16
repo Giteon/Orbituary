@@ -65,20 +65,20 @@ public void setup()
   minim = new Minim(this);
 
   /*background music*/
-  soundtrack1 = minim.loadFile("soundtrack-1.mp3");
-  soundtrack2 = minim.loadFile("soundtrack-2.mp3");
+  soundtrack1 = minim.loadFile("data//soundtrack-1.mp3");
+  soundtrack2 = minim.loadFile("data//soundtrack-2.mp3");
 
 
   /*trigger sounds*/
-  goodDing = minim.loadFile("good-ding.mp3");
-  badSnap = minim.loadFile("bad-snap.mp3");
-  step = minim.loadFile("step.mp3");
+  goodDing = minim.loadFile("data//good-ding.mp3");
+  badSnap = minim.loadFile("data//bad-snap.mp3");
+  step = minim.loadFile("data//step.mp3");
 
   /*collectables sounds*/
-  freezeCrack = minim.loadFile("freeze-crack.mp3");
-  moneySound = minim.loadFile("money-sound.mp3");
-  explosionSound = minim.loadFile("explosion-sound.mp3");
-  burnUpSound = minim.loadFile("burn-up-sound.mp3");
+  freezeCrack = minim.loadFile("data//freeze-crack.mp3");
+  moneySound = minim.loadFile("data//money-sound.mp3");
+  explosionSound = minim.loadFile("data//explosion-sound.mp3");
+  burnUpSound = minim.loadFile("data//burn-up-sound.mp3");
   /**/
 //    timeWarp = minim.loadFile("time-warp-1.mp3");
 //    demonGrowl = minim.loadFile("demon-growl.mp3");
