@@ -101,36 +101,36 @@ void draw() {
     textSize(50);
     textAlign(CENTER, CENTER);
     if (Math.random()>.35) {
-      text("O  ", 50, 60+(int)(Math.random()*4-2));  
+      text("O  ", 50, 70+(int)(Math.random()*4-2));  
       text("b", 210, height/2+(int)(Math.random()*4-2));
     }
     if (Math.random()>.35) {
-      text("R  ", 110, 70+(int)(Math.random()*4-2)); 
+      text("R  ", 110, 80+(int)(Math.random()*4-2)); 
       text("e", 234, height/2+(int)(Math.random()*4-2));
     }
     if (Math.random()>.35) {
-      text("B  ", 160, 60+(int)(Math.random()*4-2)); 
+      text("B  ", 160, 70+(int)(Math.random()*4-2)); 
       text("g", 256, height/2+(int)(Math.random()*4-2));
     }
     if (Math.random()>.35) {
-      text("I  ", 211, 70+(int)(Math.random()*4-2)); 
+      text("I  ", 211, 80+(int)(Math.random()*4-2)); 
       text("i", 276, height/2+(int)(Math.random()*4-2));
     }
     if (Math.random()>.35) {
-      text("T  ", 264, 60+(int)(Math.random()*4-2)); 
+      text("T  ", 264, 70+(int)(Math.random()*4-2)); 
       text("n", 296, height/2+(int)(Math.random()*4-2));
     }
     if (Math.random()>.35) {
-      text("U  ", 317, 70+(int)(Math.random()*4-2));
+      text("U  ", 317, 80+(int)(Math.random()*4-2));
     }
     if (Math.random()>.35) {
-      text("A  ", 370, 60+(int)(Math.random()*4-2));
+      text("A  ", 370, 70+(int)(Math.random()*4-2));
     }
     if (Math.random()>.35) {
-      text("R  ", 423, 70+(int)(Math.random()*4-2));
+      text("R  ", 423, 80+(int)(Math.random()*4-2));
     }
     if (Math.random()>.35) {
-      text("Y  ", 472, 60+(int)(Math.random()*4-2));
+      text("Y  ", 472, 70+(int)(Math.random()*4-2));
     }
 
     if (mouseX >=width/2-58 && mouseX <=(width/2-58)+118 && mouseY>=height/2-30 && mouseY <=(height/2-30)+62)
@@ -172,11 +172,11 @@ void draw() {
     fill(0);
     if (Math.random()>.35)
     {
-      text(int(points), 250, 21);
+      text(int(points), 250, 51);
       if (multiplier != 1)
       {
         fill(255, 209, 86);
-        text("X"+multiplier, 280 + ((int(points) + "").length()*8), 21);
+        text("X"+multiplier, 280 + ((int(points) + "").length()*8), 51);
       }
       if (igniteCounter < 1)
       {
@@ -209,7 +209,7 @@ void draw() {
     {
       if (Math.random()>.35)
       {
-        ellipse(i, 60, 10, 10);
+        ellipse(i, 70, 10, 10);
       }
     }
   }
