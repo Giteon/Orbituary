@@ -36,7 +36,7 @@ PFont font;
 
 public void setup()
 {
-  size(500, 500);
+  size(550, 500);
   smooth();
   background(255);
   menu = true;
@@ -101,36 +101,36 @@ void draw() {
     textSize(50);
     textAlign(CENTER, CENTER);
     if (Math.random()>.35) {
-      text("O  ", 50, 70+(int)(Math.random()*4-2));  
-      text("b", 210, height/2+(int)(Math.random()*4-2));
+      text("O  ", 71, 70+(int)(Math.random()*4-2));  
+      text("b", 234, height/2+(int)(Math.random()*4-2));
     }
     if (Math.random()>.35) {
-      text("R  ", 110, 80+(int)(Math.random()*4-2)); 
-      text("e", 234, height/2+(int)(Math.random()*4-2));
+      text("R  ", 130, 80+(int)(Math.random()*4-2)); 
+      text("e", 258, height/2+(int)(Math.random()*4-2));
     }
     if (Math.random()>.35) {
-      text("B  ", 160, 70+(int)(Math.random()*4-2)); 
-      text("g", 256, height/2+(int)(Math.random()*4-2));
+      text("B  ", 181, 70+(int)(Math.random()*4-2)); 
+      text("g", 280, height/2+(int)(Math.random()*4-2));
     }
     if (Math.random()>.35) {
-      text("I  ", 211, 80+(int)(Math.random()*4-2)); 
-      text("i", 276, height/2+(int)(Math.random()*4-2));
+      text("I  ", 234, 80+(int)(Math.random()*4-2)); 
+      text("i", 299, height/2+(int)(Math.random()*4-2));
     }
     if (Math.random()>.35) {
-      text("T  ", 264, 70+(int)(Math.random()*4-2)); 
-      text("n", 296, height/2+(int)(Math.random()*4-2));
+      text("T  ", 285, 70+(int)(Math.random()*4-2)); 
+      text("n", 319, height/2+(int)(Math.random()*4-2));
     }
     if (Math.random()>.35) {
-      text("U  ", 317, 80+(int)(Math.random()*4-2));
+      text("U  ", 337, 80+(int)(Math.random()*4-2));
     }
     if (Math.random()>.35) {
-      text("A  ", 370, 70+(int)(Math.random()*4-2));
+      text("A  ", 390, 70+(int)(Math.random()*4-2));
     }
     if (Math.random()>.35) {
-      text("R  ", 423, 80+(int)(Math.random()*4-2));
+      text("R  ", 443, 80+(int)(Math.random()*4-2));
     }
     if (Math.random()>.35) {
-      text("Y  ", 472, 70+(int)(Math.random()*4-2));
+      text("Y  ", 495, 70+(int)(Math.random()*4-2));
     }
 
     if (mouseX >=width/2-58 && mouseX <=(width/2-58)+118 && mouseY>=height/2-30 && mouseY <=(height/2-30)+62)
@@ -205,7 +205,7 @@ void draw() {
   {
     noStroke();
     fill(0);
-    for ( int i = 70; i < 450; i +=52 )
+    for ( int i = 90; i < 500; i +=52 )
     {
       if (Math.random()>.35)
       {
