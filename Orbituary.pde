@@ -620,7 +620,7 @@ public class specialOrbiter extends Orbiter {
       {
         dots.add(new Orbiter((int)dots.get(dots.size()-1).getRadius()/*new dot is at SAME radius*/, (float)(Math.random()*361), tempSpeed));
       }
-      if (Math.random() > (.95-(dots.size()/120))) /*chanmce of Freezer collectable showing up*/
+      if (Math.random() > (.93-(dots.size()/120))) /*chanmce of Freezer collectable showing up*/
       {
         freezers.add(new Freezer((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
       }
