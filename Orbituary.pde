@@ -620,15 +620,15 @@ public class specialOrbiter extends Orbiter {
       {
         dots.add(new Orbiter((int)dots.get(dots.size()-1).getRadius()/*new dot is at SAME radius*/, (float)(Math.random()*361), tempSpeed));
       }
-      if (Math.random() > (.88-(dots.size()/80))) /*chanmce of Freezer collectable showing up*/
+      if (Math.random() > (.95-(dots.size()/80))) /*chanmce of Freezer collectable showing up*/
       {
         freezers.add(new Freezer((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
       }
-      if (Math.random() > (.84-(dots.size()/72))) /*chanmce of PointMultiplier collectable showing up*/
+      if (Math.random() > (.92-(dots.size()/72))) /*chanmce of PointMultiplier collectable showing up*/
       {
         pointMultipliers.add(new PointMultiplier((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
       }
-      if (Math.random() > (.86-(dots.size()/75))) /*chanmce of Igniter collectable showing up*/
+      if (Math.random() > (.925-(dots.size()/75))) /*chanmce of Igniter collectable showing up*/
       {
         igniters.add(new Igniter((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
       }
