@@ -181,7 +181,7 @@ void draw() {
       if (igniteCounter < 1)
       {
         fill(234, 64, 17);
-        text(1-igniteCounter, 20, 20);
+        text(1-igniteCounter, 30, 50);
       }
     }
   }
