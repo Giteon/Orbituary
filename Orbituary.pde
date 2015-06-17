@@ -172,11 +172,11 @@ void draw() {
     fill(0);
     if (Math.random()>.35)
     {
-      text(int(points), 250, 56);
+      text(int(points), width/2, 56);
       if (multiplier != 1)
       {
         fill(255, 209, 86);
-        text("X"+multiplier, 280 + ((int(points) + "").length()*8), 56);
+        text("X"+multiplier, 297 + ((int(points) + "").length()*8), 56);
       }
       if (igniteCounter < 1)
       {
@@ -620,15 +620,15 @@ public class specialOrbiter extends Orbiter {
       {
         dots.add(new Orbiter((int)dots.get(dots.size()-1).getRadius()/*new dot is at SAME radius*/, (float)(Math.random()*361), tempSpeed));
       }
-      if (Math.random() > (.95-(dots.size()/120))) /*chanmce of Freezer collectable showing up*/
+      if (Math.random() > (.95-(dots.size()/30))) /*chanmce of Freezer collectable showing up*/
       {
         freezers.add(new Freezer((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
       }
-      if (Math.random() > (.92-(dots.size()/110))) /*chanmce of PointMultiplier collectable showing up*/
+      if (Math.random() > (.92-(dots.size()/20))) /*chanmce of PointMultiplier collectable showing up*/
       {
         pointMultipliers.add(new PointMultiplier((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
       }
-      if (Math.random() > (.925-(dots.size()/115))) /*chanmce of Igniter collectable showing up*/
+      if (Math.random() > (.925-(dots.size()/22))) /*chanmce of Igniter collectable showing up*/
       {
         igniters.add(new Igniter((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
       }
