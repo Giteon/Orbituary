@@ -135,7 +135,6 @@ void draw() {
     //opening
     if (menu)
     {
-      println(dist(mouseX, mouseY, width/2, height/2));
       noFill();
 
       float dTemp = 30;
