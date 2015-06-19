@@ -82,7 +82,7 @@ public void setup()
   explosionSound = minim.loadFile("data//explosion-sound.mp3");
   burnUpSound = minim.loadFile("data//burn-up-sound.mp3");
   /**/
-    startBell = minim.loadFile("data//start-bell.mp3");
+  startBell = minim.loadFile("data//start-bell.mp3");
   //    demonGrowl = minim.loadFile("demon-growl.mp3");
 
   soundtrack1.loop();
@@ -100,24 +100,24 @@ void draw() {
     fill(0);
     textSize(50);
     textAlign(CENTER, CENTER);
-    if (Math.random()>1/*.35*/) {
-      text("O  ", 71, 70+(int)(Math.random()*4-2));  
+    if (Math.random()>.35) {
+      //      text("O  ", 71, 70+(int)(Math.random()*4-2));  
       text("b", 234, height/2+(int)(Math.random()*4-2));
     }
-    if (Math.random()>1/*.35*/) {
-      text("R  ", 130, 80+(int)(Math.random()*4-2)); 
+    if (Math.random()>.35) {
+      //      text("R  ", 130, 80+(int)(Math.random()*4-2)); 
       text("e", 258, height/2+(int)(Math.random()*4-2));
     }
-    if (Math.random()>1/*.35*/) {
-      text("B  ", 181, 70+(int)(Math.random()*4-2)); 
+    if (Math.random()>.35) {
+      //      text("B  ", 181, 70+(int)(Math.random()*4-2)); 
       text("g", 280, height/2+(int)(Math.random()*4-2));
     }
-    if (Math.random()>1/*.35*/) {
-      text("I  ", 234, 80+(int)(Math.random()*4-2)); 
+    if (Math.random()>.35) {
+      //      text("I  ", 234, 80+(int)(Math.random()*4-2)); 
       text("i", 299, height/2+(int)(Math.random()*4-2));
     }
-    if (Math.random()>1/*.35*/) {
-      text("T  ", 285, 70+(int)(Math.random()*4-2)); 
+    if (Math.random()>.35) {
+      //      text("T  ", 285, 70+(int)(Math.random()*4-2)); 
       text("n", 319, height/2+(int)(Math.random()*4-2));
     }
     if (Math.random()>1/*.35*/) {
@@ -132,29 +132,39 @@ void draw() {
     if (Math.random()>1/*.35*/) {
       text("Y  ", 495, 70+(int)(Math.random()*4-2));
     }
-//opening
+    //opening
     if (menu)
     {
+      println(dist(mouseX, mouseY, width/2, height/2));
       noFill();
-      stroke(0);
+
       float dTemp = 30;
-      for (int c = (int)(width*1.4); c>-30; c-=dTemp)
+      for (int c = (int)(width*1.4); c>120; c-=dTemp)
       {
         if (dist(mouseX, mouseY, width/2, height/2)<c/2)
         {
-          step.play();
-          step.rewind();
-          ellipse(width/2, height/2, c, c);
+
+          strokeWeight(.5);
+          stroke(50);
+          ellipse(width/2, height/2, c+(int)(Math.random()*6-4), c+(int)(Math.random()*6-4));
+          stroke(242, 230, 95);
+          ellipse(width/2, height/2, c+(int)(Math.random()*6-4), c+(int)(Math.random()*6-4));
           dTemp -= .5;
-          if (dist(mouseX, mouseY, width/2, height/2)<10)
+          if (dist(mouseX, mouseY, width/2, height/2)<63)
           {
-            startBell.play();
-            menu = false;
+
+            stroke(144, 234, 226);
+            strokeWeight(3);
+            ellipse(width/2, height/2, 126, 126);
+            if (mousePressed)
+            {
+              startBell.play();
+              menu = false;
+            }
           }
         }
       }
     }
-  
     //    if (mouseX >=width/2-58 && mouseX <=(width/2-58)+118 && mouseY>=height/2-30 && mouseY <=(height/2-30)+62)
     //    {
     //      step.play();
