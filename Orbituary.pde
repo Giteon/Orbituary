@@ -221,7 +221,7 @@ void draw() {
   {
     if (Math.random()>.55)
     {
-      fill((int)(Math.random()*25+230), 61);
+      fill(236,228,216, 61);
       rect(0, 0, width, height);
     }
   }
