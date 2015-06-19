@@ -82,7 +82,7 @@ public void setup()
   explosionSound = minim.loadFile("data//explosion-sound.mp3");
   burnUpSound = minim.loadFile("data//burn-up-sound.mp3");
   /**/
-//  startBell = minim.loadFile("data//start-bell.mp3");
+  startBell = minim.loadFile("data//start-bell.mp3");
   //    demonGrowl = minim.loadFile("demon-growl.mp3");
 
   soundtrack1.loop();
@@ -97,65 +97,103 @@ void draw() {
   /*display title*/
   if (menu)
   {
-    fill(0);
-    textSize(50);
-    textAlign(CENTER, CENTER);
-    if (Math.random()>.35) {
-      text("O  ", 71, 70+(int)(Math.random()*4-2));  
-      text("b", 234, height/2+(int)(Math.random()*4-2));
-    }
-    if (Math.random()>.35) {
-      text("R  ", 130, 80+(int)(Math.random()*4-2)); 
-      text("e", 258, height/2+(int)(Math.random()*4-2));
-    }
-    if (Math.random()>.35) {
-      text("B  ", 181, 70+(int)(Math.random()*4-2)); 
-      text("g", 280, height/2+(int)(Math.random()*4-2));
-    }
-    if (Math.random()>.35) {
-      text("I  ", 234, 80+(int)(Math.random()*4-2)); 
-      text("i", 299, height/2+(int)(Math.random()*4-2));
-    }
-    if (Math.random()>.35) {
-      text("T  ", 285, 70+(int)(Math.random()*4-2)); 
-      text("n", 319, height/2+(int)(Math.random()*4-2));
-    }
-    if (Math.random()>.35) {
-      text("U  ", 337, 80+(int)(Math.random()*4-2));
-    }
-    if (Math.random()>.35) {
-      text("A  ", 390, 70+(int)(Math.random()*4-2));
-    }
-    if (Math.random()>.35) {
-      text("R  ", 443, 80+(int)(Math.random()*4-2));
-    }
-    if (Math.random()>.35) {
-      text("Y  ", 495, 70+(int)(Math.random()*4-2));
-    }
-
-    if (mouseX >=width/2-58 && mouseX <=(width/2-58)+118 && mouseY>=height/2-30 && mouseY <=(height/2-30)+62)
+    if (dist(mouseX, mouseY, width/2, height/2)<63)
     {
-      step.play();
-      strokeWeight(1);
-      stroke(50);
-      if (mousePressed)
-      {
-        menu = false;
-//        startBell.play();
-      }
+      fill(107, 237, 185);
     }
     else
     {
-      step.rewind();
-      strokeWeight(.5);
-      stroke(200);
+      fill(0);
     }
-    noFill();
-    if (Math.random()>.85)
+    textSize(50);
+    textAlign(CENTER, CENTER);
+    if (Math.random()>.35) {
+      //      text("O  ", 71, 70+(int)(Math.random()*4-2));  
+      text("b", 234, height/2+(int)(Math.random()*4-2));
+    }
+    if (Math.random()>.35) {
+      //      text("R  ", 130, 80+(int)(Math.random()*4-2)); 
+      text("e", 258, height/2+(int)(Math.random()*4-2));
+    }
+    if (Math.random()>.35) {
+      //      text("B  ", 181, 70+(int)(Math.random()*4-2)); 
+      text("g", 280, height/2+(int)(Math.random()*4-2));
+    }
+    if (Math.random()>.35) {
+      //      text("I  ", 234, 80+(int)(Math.random()*4-2)); 
+      text("i", 299, height/2+(int)(Math.random()*4-2));
+    }
+    if (Math.random()>.35) {
+      //      text("T  ", 285, 70+(int)(Math.random()*4-2)); 
+      text("n", 319, height/2+(int)(Math.random()*4-2));
+    }
+    if (Math.random()>1/*.35*/) {
+      text("U  ", 337, 80+(int)(Math.random()*4-2));
+    }
+    if (Math.random()>1/*.35*/) {
+      text("A  ", 390, 70+(int)(Math.random()*4-2));
+    }
+    if (Math.random()>1/*.35*/) {
+      text("R  ", 443, 80+(int)(Math.random()*4-2));
+    }
+    if (Math.random()>1/*.35*/) {
+      text("Y  ", 495, 70+(int)(Math.random()*4-2));
+    }
+    //opening
+    if (menu)
     {
-      rect(width/2-58, height/2-30, 118, 62);
+      noFill();
+      stroke(0);
+      float dTemp = 30;
+      for (int c = (int)(width*1.4); c>120; c-=dTemp)
+      {
+        if (dist(mouseX, mouseY, width/2, height/2)<c/2)
+        {
+          strokeWeight(.5);
+          stroke(20);
+          ellipse(width/2, height/2, c+(int)(Math.random()*6-3), c+(int)(Math.random()*6-3));
+          stroke(238, 245, 57);
+          ellipse(width/2, height/2, c+(int)(Math.random()*6-3), c+(int)(Math.random()*6-3));
+          dTemp -= .5;
+          if (dist(mouseX, mouseY, width/2, height/2)<63)
+          {
+            strokeWeight(3);
+            stroke(107, 237, 185);
+            ellipse(width/2, height/2, 126, 126);
+            if (mousePressed)
+            {
+              startBell.play();
+              menu = false;
+            }
+          }
+        }
+      }
     }
+
+    //    if (mouseX >=width/2-58 && mouseX <=(width/2-58)+118 && mouseY>=height/2-30 && mouseY <=(height/2-30)+62)
+    //    {
+    //      step.play();
+    //      strokeWeight(1);
+    //      stroke(50);
+    //      if (mousePressed)
+    //      {
+    //        menu = false;
+    ////        startBell.play();
+    //      }
+    //    }
+    //    else
+    //    {
+    //      step.rewind();
+    //      strokeWeight(.5);
+    //      stroke(200);
+    //    }
+    //    noFill();
+    //    if (Math.random()>.85)
+    //    {
+    //      rect(width/2-58, height/2-30, 118, 62);
+    //    }
   }
+
 
   /**/
 
@@ -170,7 +208,7 @@ void draw() {
   {
     textSize(31);
     fill(0);
-    if (Math.random()>.35)
+    if (Math.random()>.36)
     {
       text(int(points), width/2, 56);
       if (multiplier != 1)
@@ -207,7 +245,7 @@ void draw() {
     fill(0);
     for ( int i = 90; i < 500; i +=52 )
     {
-      if (Math.random()>.35)
+      if (Math.random()>1/*.35*/)
       {
         ellipse(i, 70, 10, 10);
       }
@@ -221,7 +259,7 @@ void draw() {
   {
     if (Math.random()>.55)
     {
-      fill(236,228,216, 61);
+      fill(236, 228, 216, 61);
       rect(0, 0, width, height);
     }
   }
@@ -299,7 +337,7 @@ void draw() {
     gideon.getY();
     gideon.getRadius();
     gideon.keyReleased(); /*radius shift*/
-//    gideon.mousePressed();
+    //    gideon.mousePressed();
     gideon.reachCenter();
     gideon.collide();
   }
