@@ -117,7 +117,7 @@ void draw() {
     }
     if (Math.random()>.35) {
       //      text("B  ", 181, 70+(int)(Math.random()*4-2)); 
-      text("g", 284, height/2+(int)(Math.random()*4-2));
+      text("g", 283, height/2+(int)(Math.random()*4-2));
     }
     if (Math.random()>.35) {
       //      text("I  ", 234, 80+(int)(Math.random()*4-2)); 
