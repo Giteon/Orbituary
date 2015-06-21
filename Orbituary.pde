@@ -923,4 +923,3 @@ public class Igniter extends Collectable {
 }
 /*RadiusCompiler*/
 //something to change directions
-
