@@ -3,7 +3,8 @@
 import ddf.minim.*;
 
 boolean menu;
-
+int tutorial;
+boolean goodJob;
 ArrayList <Orbiter> dots = new ArrayList <Orbiter>();
 
 /*collectables ArrayLists*/
@@ -60,7 +61,8 @@ public void setup()
 
   /*initialize objects*/
   gideon = new specialOrbiter(20, 180, 30);
-  dots.add(new Orbiter(12, (float)(Math.random()*361), (float)(Math.random()*.5)));
+  /*tutorial later*/
+  dots.add(new Orbiter(12, (float)(Math.random()*361), (float)(Math.random()*3)));
   /**/
 
   /*initialize sounds*/
@@ -93,111 +95,76 @@ public void setup()
   textFont(font);
 }
 void draw() {
-
   /*display title*/
+
   if (menu)
-  {
-    if (dist(mouseX, mouseY, width/2, height/2)<63)
+  { 
+    noFill();
+    stroke(0);
+    float dTemp = 30;
+    for (int c = (int)(width*1.4); c>120; c-=dTemp)
     {
-      fill(107, 237, 185);
-    }
-    else
-    {
-      fill(0);
-    }
-    textSize(50);
-    textAlign(CENTER, CENTER);
-    if (Math.random()>.35) {
-      //      text("O  ", 71, 70+(int)(Math.random()*4-2));  
-      text("b", 234, height/2+(int)(Math.random()*4-2));
-    }
-    if (Math.random()>.35) {
-      //      text("R  ", 130, 80+(int)(Math.random()*4-2)); 
-      text("e", 258, height/2+(int)(Math.random()*4-2));
-    }
-    if (Math.random()>.35) {
-      //      text("B  ", 181, 70+(int)(Math.random()*4-2)); 
-      text("g", 283, height/2+(int)(Math.random()*4-2));
-    }
-    if (Math.random()>.35) {
-      //      text("I  ", 234, 80+(int)(Math.random()*4-2)); 
-      text("i", 299, height/2+(int)(Math.random()*4-2));
-    }
-    if (Math.random()>.35) {
-      //      text("T  ", 285, 70+(int)(Math.random()*4-2)); 
-      text("n", 319, height/2+(int)(Math.random()*4-2));
-    }
-    if (Math.random()>1/*.35*/) {
-      text("U  ", 337, 80+(int)(Math.random()*4-2));
-    }
-    if (Math.random()>1/*.35*/) {
-      text("A  ", 390, 70+(int)(Math.random()*4-2));
-    }
-    if (Math.random()>1/*.35*/) {
-      text("R  ", 443, 80+(int)(Math.random()*4-2));
-    }
-    if (Math.random()>1/*.35*/) {
-      text("Y  ", 495, 70+(int)(Math.random()*4-2));
-    }
-    //opening
-    if (menu)
-    {
-      noFill();
-      stroke(0);
-      float dTemp = 30;
-      for (int c = (int)(width*1.4); c>120; c-=dTemp)
+      if (dist(mouseX, mouseY, width/2, height/2)<c/2)
       {
-        if (dist(mouseX, mouseY, width/2, height/2)<c/2)
+        strokeWeight(.5);
+        fill(c/2, c/3, c/4);
+        noStroke();
+        ellipse(width/2, height/2, c+(int)(Math.random()*6-3), c+(int)(Math.random()*6-3));
+        dTemp -= .5;
+        if (dist(mouseX, mouseY, width/2, height/2)<30)
         {
-          strokeWeight(.5);
-          stroke(20);
-          ellipse(width/2, height/2, c+(int)(Math.random()*6-3), c+(int)(Math.random()*6-3));
-          stroke(238, 245, 57);
-          ellipse(width/2, height/2, c+(int)(Math.random()*6-3), c+(int)(Math.random()*6-3));
-          dTemp -= .5;
-          if (dist(mouseX, mouseY, width/2, height/2)<63)
+          strokeWeight(2.5);
+          //          stroke(180, 75, 55);
+          //           noFill();
+          //          ellipse(width/2, height/2, 126, 126);
+          if (mousePressed)
           {
-            strokeWeight(3);
-            stroke(107, 237, 185);
-            ellipse(width/2, height/2, 126, 126);
-            if (mousePressed)
-            {
-              startBell.play();
-              menu = false;
-            }
+            startBell.play();
+            menu = false;
+            tutorial = 1;
           }
         }
       }
     }
-
-    //    if (mouseX >=width/2-58 && mouseX <=(width/2-58)+118 && mouseY>=height/2-30 && mouseY <=(height/2-30)+62)
-    //    {
-    //      step.play();
-    //      strokeWeight(1);
-    //      stroke(50);
-    //      if (mousePressed)
-    //      {
-    //        menu = false;
-    ////        startBell.play();
-    //      }
-    //    }
-    //    else
-    //    {
-    //      step.rewind();
-    //      strokeWeight(.5);
-    //      stroke(200);
-    //    }
-    //    noFill();
-    //    if (Math.random()>.85)
-    //    {
-    //      rect(width/2-58, height/2-30, 118, 62);
-    //    }
+    int t = (int)(Math.random()*4-2);
+    if (dist(mouseX, mouseY, width/2, height/2)<63)
+    {
+      fill(180, 50, 50);
+      if (dist(mouseX, mouseY, width/2, height/2)<30)
+      {
+        stroke(0);
+      }
+      triangle(254+(int)(Math.random()*4-2), 217+(int)(Math.random()*4-2), 254+(int)(Math.random()*4-2), 287+(int)(Math.random()*4-2), 311+(int)(Math.random()*4-2), 252+(int)(Math.random()*4-2));
+    }
   }
+  /*"begin" text
+   textSize(50);
+   textAlign(CENTER, CENTER);
+   if (Math.random()>.35) {
+   //      text("O  ", 71, 70+(int)(Math.random()*4-2));  
+   text("b", 234, height/2+(int)(Math.random()*4-2));
+   }
+   if (Math.random()>.35) {
+   //      text("R  ", 130, 80+(int)(Math.random()*4-2)); 
+   text("e", 258, height/2+(int)(Math.random()*4-2));
+   }
+   if (Math.random()>.35) {
+   //      text("B  ", 181, 70+(int)(Math.random()*4-2)); 
+   text("g", 280, height/2+(int)(Math.random()*4-2));
+   }
+   if (Math.random()>.35) {
+   //      text("I  ", 234, 80+(int)(Math.random()*4-2)); 
+   text("i", 299, height/2+(int)(Math.random()*4-2));
+   }
+   if (Math.random()>.35) {
+   //      text("T  ", 285, 70+(int)(Math.random()*4-2)); 
+   text("n", 319, height/2+(int)(Math.random()*4-2));
+   }
+   }
+   }
+   */
 
-
-  /**/
-
-  /*ring showing the current radius
+  /* ring showing the current radius
    stroke(254,207,200);
    noFill();
    ellipse(width/2,height/2,gideon.getRadius()*2,gideon.getRadius()*2);
@@ -206,15 +173,30 @@ void draw() {
   /*display points*/
   if (!menu)
   {
+    /*"Help" button*/
+    textSize(30);
+      noFill();
+      stroke(0);
+    if (dist(mouseX, mouseY, 533,478)<10)
+    {
+      if (mousePressed)
+      {
+      tutorial = 1;
+      }
+    textSize(45);
+    }
+    text("?", 533, 478);
+    /* */
+    textAlign(CENTER, CENTER);
     textSize(31);
     fill(0);
     if (Math.random()>.36)
     {
-      text(int(points), width/2, 56);
+      text(int(points), width/2, 26);
       if (multiplier != 1)
       {
         fill(255, 209, 86);
-        text("X"+multiplier, 297 + ((int(points) + "").length()*8), 56);
+        text("X"+multiplier, 297 + ((int(points) + "").length()*8), 26);
       }
       if (igniteCounter < 1)
       {
@@ -225,32 +207,106 @@ void draw() {
   }
   /**/
 
-  /*background visual noise*/
-  strokeWeight(.5);
-  stroke((int)(Math.random()*80+170));
-  int tempGrainY = (int)(Math.random()*height);
-  int tempGrainX = (int)(Math.random()*width);
-  line(tempGrainX, tempGrainY, tempGrainY+(int)(Math.random()*20-10), tempGrainY+(int)(Math.random()*20-10));
-  line(tempGrainY, tempGrainX, tempGrainY+(int)(Math.random()*20-10), tempGrainX+(int)(Math.random()*20-10));
-  line((int)(Math.random()*width), (int)(Math.random()*width), (int)(Math.random()*width), (int)(Math.random()*width));
-  stroke((int)(Math.random()*125+130), (int)(Math.random()*125+130), (int)(Math.random()*125+130));
-  line(tempGrainY, tempGrainX, tempGrainY+(int)(Math.random()*20-10), tempGrainY+(int)(Math.random()*20-10));
-  line(tempGrainX, tempGrainY, tempGrainX+(int)(Math.random()*20-10), tempGrainY+(int)(Math.random()*20-10));
-  /**/
-
-  /*displays dots between title letters*/
-  if (menu)
+  /*tutorials*/
+  if (tutorial == 1)
   {
-    noStroke();
-    fill(0);
-    for ( int i = 90; i < 500; i +=52 )
+    textSize(33);
+    text("Welcome to Orbituary", width/2+(int)(Math.random()*6-3), 112);
+    text("You are the orbiting black dot", width/2+(int)(Math.random()*6-3), 176);
+    text("Press ENTER to continue", width/2+(int)(Math.random()*6-3), 331);
+    if (keyPressed && key == ENTER)
     {
-      if (Math.random()>1/*.35*/)
+      tutorial = 2;
+    }
+  }
+  if (tutorial == 2)
+  {
+    textSize(33);
+    text("Press spacebar to move inwards", width/2+(int)(Math.random()*6-3), 112);
+    text("Reach the center to increase your score", width/2+(int)(Math.random()*6-3), 176);
+    textSize(29);
+    text("Hit other rotating dots, your score suffers", width/2+(int)(Math.random()*6-3), 331);
+    if (keyPressed && key == ' ')
+    {
+      if (goodJob == true)
       {
-        ellipse(i, 70, 10, 10);
+        tutorial = 3;
+        goodJob=false;
       }
     }
   }
+  if (tutorial == 3)
+  {
+    textSize(33);
+    text("The ring is your current terminal radius", width/2+(int)(Math.random()*6-3), 112);
+    text("You may never go beyond it,", width/2+(int)(Math.random()*6-3), 330);
+    text("But it expands as you progress", width/2+(int)(Math.random()*6-3), 380);
+    text("Press the shift key to move outwards", width/2+(int)(Math.random()*6-3), 445);
+    noFill();
+    stroke(60);
+    ellipse(width/2, height/2, (dots.get(dots.size()-1).getRadius())+52, (dots.get(dots.size()-1).getRadius())+52);
+    if (keyPressed && keyCode == SHIFT)
+    {
+      if (goodJob == true)
+      {
+        tutorial = 4;
+        goodJob = false;
+      }
+    }
+  }
+  if (tutorial == 4)
+  {
+    textSize(33);
+    text("You figured it out. Well done", width/2+(int)(Math.random()*6-3), 112);
+    text("Large colorful dots may appear", width/2+(int)(Math.random()*6-3), 336);
+    text("These are powerups,", width/2+(int)(Math.random()*6-3), 376);
+    text("They have different effects", width/2+(int)(Math.random()*6-3), 417);
+    text("Go forth, and good luck.", width/2+(int)(Math.random()*6-3), 466);
+    noFill();
+    stroke(100);
+    ellipse(width/2, height/2, (dots.get(dots.size()-1).getRadius())+52, (dots.get(dots.size()-1).getRadius())+52);
+    if (goodJob == true)
+    {
+      tutorial = 5;
+      goodJob = false;
+    }
+  }
+  /**/
+  /*background visual noise*/
+  strokeWeight(.5);
+  int tempGrainY = (int)(Math.random()*height);
+  int tempGrainX = (int)(Math.random()*width);
+  if (!menu)
+  {
+    stroke((int)(Math.random()*80+170));
+
+    line(tempGrainX, tempGrainY, tempGrainY+(int)(Math.random()*20-10), tempGrainY+(int)(Math.random()*20-10));
+    line(tempGrainY, tempGrainX, tempGrainY+(int)(Math.random()*20-10), tempGrainX+(int)(Math.random()*20-10));
+    line((int)(Math.random()*width), (int)(Math.random()*width), (int)(Math.random()*width), (int)(Math.random()*width));
+  }
+  if (!menu)
+  {
+    stroke((int)(Math.random()*125+130), (int)(Math.random()*125+130), (int)(Math.random()*125+130));
+  } else
+  {
+    stroke(180, 50, 50);
+    line(tempGrainY, tempGrainX, tempGrainY+(int)(Math.random()*20-10), tempGrainY+(int)(Math.random()*20-10));
+    line(tempGrainX, tempGrainY, tempGrainX+(int)(Math.random()*20-10), tempGrainY+(int)(Math.random()*20-10));
+  }
+  /**/
+  /*displays dots between title letters*/
+  //  if (menu)
+  //  {
+  //    noStroke();
+  //    fill(0);
+  //    for ( int i = 90; i < 500; i +=52 )
+  //    {
+  //      if (Math.random()>1/*.35*/)
+  //      {
+  //        ellipse(i, 70, 10, 10);
+  //      }
+  //    }
+  //  }
 
   /**/
 
@@ -262,8 +318,7 @@ void draw() {
       fill(236, 228, 216, 61);
       rect(0, 0, width, height);
     }
-  }
-  else
+  } else
   {
     fill(0);
     rect(0, 0, width, height);
@@ -281,8 +336,7 @@ void draw() {
       if (Math.random()>.5)
       {
         ellipse(width/2, height/2, 6, 6);
-      } 
-      else
+      } else
       {
         ellipse(width/2, height/2, 8, 8);
       }
@@ -370,8 +424,7 @@ public class Orbiter
     {
       tempWiggleX = Math.random()*3-1.5;
       tempWiggleY = Math.random()*3-1.5;
-    }
-    else
+    } else
     {
       tempWiggleX = 0;
       tempWiggleY = 0;
@@ -383,8 +436,7 @@ public class Orbiter
         /*rotate clockwise*/
         x = Math.sin((double)pos/360*(2*PI)) * radius+width/2+tempWiggleX;
         y = Math.cos((double)pos/360*(2*PI)) * radius+height/2+tempWiggleY;
-      } 
-      else
+      } else
       {
         /*rotate counterclockwise*/
         x = Math.cos((double)pos/360*(2*PI)) * radius+width/2+tempWiggleX;
@@ -397,8 +449,7 @@ public class Orbiter
       if (isSlowed == false)
       {
         pos+=speed;
-      }
-      else
+      } else
       {
         pos+=speed/2.8;
       }
@@ -415,8 +466,7 @@ public class Orbiter
     if (isSlowed == false)
     {
       fill((int)x/1.2-60, (int)y/1.2-100, ((int)x+(int)y)/3-80);
-    }
-    else
+    } else
     {
       fill(255);
     }
@@ -471,30 +521,25 @@ public class specialOrbiter extends Orbiter {
       if (isSlowed)
       {
         pos += speed/((float(getRadius()))/1.4)/2.8;
-      }
-      else
+      } else
       {
         pos += speed/((float(getRadius()))/1.4);
       }
-    } 
-    else if (radius < 61)
+    } else if (radius < 61)
     {
       if (isSlowed)
       {
         pos += speed/((float(getRadius()))/2.8)/2.8;
-      }
-      else
+      } else
       {
         pos += speed/((float(getRadius()))/2.8);
       }
-    } 
-    else
+    } else
     {
       if (isSlowed)
       {
         pos += speed/((float(getRadius()))/3.7)/2.8;
-      }
-      else
+      } else
       {
         pos += speed/((float(getRadius()))/3.7);
       }
@@ -519,12 +564,10 @@ public class specialOrbiter extends Orbiter {
     if (igniteCounter < 1)
     {
       fill(242, 78, 37);
-    }
-    else if (multiplier != 1)
+    } else if (multiplier != 1)
     {
       fill(255, 209, 86);
-    }
-    else
+    } else
     {
       fill((int)x/10, (int)x/10, (int)x/10);
     }
@@ -563,23 +606,28 @@ public class specialOrbiter extends Orbiter {
     {
       canShift = false;
 
-      if ( keyCode == UP && radius <= dots.get(dots.size()-1).getRadius())
+      if ( keyCode == SHIFT)
       {
-        /*move away from center*/
-        step.play();
-        step.rewind();
-        radius += 8;
-        if (multiplier == 1)
+        if ( (tutorial == 3 && radius < 50) ||tutorial >3 && radius <= dots.get(dots.size()-1).getRadius()    )
         {
-          int(points --);
-        } 
-        else
-        {
-          int(points -=multiplier);
+          /*move away from center*/
+          step.play();
+          step.rewind();
+          radius += 8;
+          if (tutorial == 3)
+          {
+            goodJob=true;
+          }
+          if (multiplier == 1)
+          {
+            int(points --);
+          } else
+          {
+            int(points -=multiplier);
+          }
+          /**/
         }
-        /**/
-      } 
-      else if ( keyCode == DOWN && !animateBackToOuterRadius)
+      } else if ( key == ' '  && (tutorial == 2|| tutorial >3) && !animateBackToOuterRadius )
       {
         /*move towards center*/
         step.play();
@@ -588,16 +636,14 @@ public class specialOrbiter extends Orbiter {
         if (multiplier == 1)
         {
           int(points ++);
-        } 
-        else
+        } else
         {
           int(points +=multiplier);
         }
         /**/
-      }
-      else if ( key == ' ')
+      } else if ( key == ' ')
       {
-        isSlowed = !isSlowed;
+        //        isSlowed = !isSlowed;
       }
     }
     /*prevents user from holding a key to continuously move*/
@@ -610,7 +656,7 @@ public class specialOrbiter extends Orbiter {
   /**/
   public void mousePressed()
   {
-    if (!menu && canShift && mousePressed && !animateBackToOuterRadius)
+    if (!menu && canShift && mousePressed && !animateBackToOuterRadius && (tutorial == 0|| tutorial == 2||tutorial==4))
     {
       canShift = false;
       /*move towards center*/
@@ -620,8 +666,7 @@ public class specialOrbiter extends Orbiter {
       if (multiplier == 1)
       {
         int(points ++);
-      } 
-      else
+      } else
       {
         int(points +=multiplier);
       }
@@ -638,8 +683,10 @@ public class specialOrbiter extends Orbiter {
     {
       goodDing.play();
       goodDing.rewind();
-      points += 10;
+      points += (float)(dots.get(dots.size()-1).getRadius())/3;
       speed -= float(getRadius())/20;
+
+      goodJob = true;
       /*trigger actions*/
       tempSpeed =  (float)Math.random()*.4+.5-(dots.size()/10);
       if (tempSpeed > 1)
@@ -653,22 +700,24 @@ public class specialOrbiter extends Orbiter {
       if (Math.random()>.3)
       {
         dots.add(new Orbiter((int)dots.get(dots.size()-1).getRadius()/*new dot is at a GREATER radius*/+8, (float)(Math.random()*361), tempSpeed));
-      }
-      else
+      } else
       {
         dots.add(new Orbiter((int)dots.get(dots.size()-1).getRadius()/*new dot is at SAME radius*/, (float)(Math.random()*361), tempSpeed));
       }
-      if (Math.random() > (.93-(dots.size()/120))) /*chanmce of Freezer collectable showing up*/
+      if (dots.get(dots.size()-1).getRadius() > 45 && tutorial > 4) /*powerups only will show up after a little while*/
       {
-        freezers.add(new Freezer((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
-      }
-      if (Math.random() > (.92-(dots.size()/110))) /*chanmce of PointMultiplier collectable showing up*/
-      {
-        pointMultipliers.add(new PointMultiplier((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
-      }
-      if (Math.random() > (.925-(dots.size()/115))) /*chanmce of Igniter collectable showing up*/
-      {
-        igniters.add(new Igniter((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
+        if (Math.random() > (.93-(dots.size()/120))) /*chanmce of Freezer collectable showing up*/
+        {
+          freezers.add(new Freezer((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
+        }
+        if (Math.random() > (.92-(dots.size()/110))) /*chanmce of PointMultiplier collectable showing up*/
+        {
+          pointMultipliers.add(new PointMultiplier((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
+        }
+        if (Math.random() > (.925-(dots.size()/105))) /*chanmce of Igniter collectable showing up*/
+        {
+          igniters.add(new Igniter((int)(Math.random()*(dots.size()-1))*8+12, (float)(Math.random()*361), (float)0));
+        }
       }
       animateBackToOuterRadius = true;
       background(135, 250, 135);
@@ -676,7 +725,7 @@ public class specialOrbiter extends Orbiter {
   }
   /**/
 
-  /*trigger actions when character comes into contact with another orbiter*/
+  /*trigger actions when character collides with another orbiter*/
   public void collide() {
     for (int i = 0; i < dots.size (); i ++)
     {
@@ -695,16 +744,14 @@ public class specialOrbiter extends Orbiter {
           badSnap.play();
           badSnap.rewind();
           background(222, 65, 65);
-          int(points -= ((int)(dots.size()*1.2)*(multiplier/2)));
+          points -= (int)((dots.size()*1.5)*((multiplier+1)/2));
           animateBackToOuterRadius = true;
-        }
-        else
+        } else
         {
           burnUpSound.play();
           burnUpSound.rewind();
           dots.remove(i);
           igniteCounter ++;
-          //lala
         }
       }
     }
@@ -821,7 +868,7 @@ public class Freezer extends Collectable {
   }
   public void show() {
     fill(71, 185, 206);
-    ellipse((int)x, (int)y, 6, 6);
+    ellipse((int)x, (int)y, 9, 9);
   }
 
 
@@ -861,7 +908,7 @@ public class PointMultiplier extends Collectable {
   }
   public void show() {
     fill(255, 209, 86);
-    ellipse((int)x, (int)y, 6, 6);
+    ellipse((int)x, (int)y, 9, 9);
   }
 
   public double getX() {
@@ -898,7 +945,7 @@ public class Igniter extends Collectable {
   }
   public void show() {
     fill(242, 88, 37);
-    ellipse((int)x, (int)y, 6, 6);
+    ellipse((int)x, (int)y, 9, 9);
   }
 
   public double getX() {
