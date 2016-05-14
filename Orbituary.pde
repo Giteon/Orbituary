@@ -192,11 +192,11 @@ void draw() {
     fill(0);
     if (Math.random()>.36)
     {
-      text(int(points), width/2, 26);
+      text(int(points), width/2, 66);
       if (multiplier != 1)
       {
         fill(255, 209, 86);
-        text("X"+multiplier, 297 + ((int(points) + "").length()*8), 26);
+        text("X"+multiplier, 297 + ((int(points) + "").length()*8), 66);
       }
       if (igniteCounter < 1)
       {
