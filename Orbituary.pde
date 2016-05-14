@@ -223,8 +223,8 @@ void draw() {
   {
     textSize(33);
     text("Press spacebar to move inwards", width/2+(int)(Math.random()*6-3), 112);
-    text("Reach the center to increase your score", width/2+(int)(Math.random()*6-3), 176);
     textSize(29);
+    text("Reach the center to increase your score", width/2+(int)(Math.random()*6-3), 176);
     text("Hit other rotating dots, your score suffers", width/2+(int)(Math.random()*6-3), 331);
     if (keyPressed && key == ' ')
     {
@@ -237,11 +237,12 @@ void draw() {
   }
   if (tutorial == 3)
   {
-    textSize(33);
+    textSize(28);
     text("The ring is your current terminal radius", width/2+(int)(Math.random()*6-3), 112);
+    text("It is safe", width/2+(int)(Math.random()*6-3), 156);
     text("You may never go beyond it,", width/2+(int)(Math.random()*6-3), 330);
     text("But it expands as you progress", width/2+(int)(Math.random()*6-3), 380);
-    text("Press the shift key to move outwards", width/2+(int)(Math.random()*6-3), 445);
+    text("Press the shift key to move outwards", width/2+(int)(Math.random()*6-3), 435);
     noFill();
     stroke(60);
     ellipse(width/2, height/2, (dots.get(dots.size()-1).getRadius())+52, (dots.get(dots.size()-1).getRadius())+52);
@@ -260,7 +261,7 @@ void draw() {
     text("You figured it out. Well done", width/2+(int)(Math.random()*6-3), 112);
     text("Large colorful dots may appear", width/2+(int)(Math.random()*6-3), 336);
     text("These are powerups,", width/2+(int)(Math.random()*6-3), 376);
-    text("They have different effects", width/2+(int)(Math.random()*6-3), 417);
+    text("They have various effects", width/2+(int)(Math.random()*6-3), 417);
     text("Go forth, and good luck.", width/2+(int)(Math.random()*6-3), 466);
     noFill();
     stroke(100);
